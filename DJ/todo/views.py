@@ -14,7 +14,8 @@ def home(req):
         "products": products,
         'userInfo': userInfo
     }
-    return render(req, 'home.html', data)
+
+    return render(req, 'home.html')
 
 
 def login(req):

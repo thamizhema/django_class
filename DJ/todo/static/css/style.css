@@ -2,6 +2,27 @@
   margin: 0;
   box-sizing: border-box;
 }
-body {
-  background: yellow;
+.appbar {
+  height: 50px;
+  background: black;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+}
+.appbar .nav-items {
+  display: inline-flex;
+  gap: 10px;
+  align-items: center;
+  list-style: none;
+}
+.appbar .nav-items li a {
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 20px;
+  transition: 0.5s;
+}
+.appbar .nav-items li a:hover {
+  opacity: 0.5;
 }

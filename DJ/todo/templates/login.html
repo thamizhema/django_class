@@ -1,7 +1,11 @@
-<html>
-  <body>
-    <a href="/">Home</a>
-    <input type="text" placeholder="email" />
-    <input type="submit" value="login" />
-  </body>
-</html>
+{% extends 'base.html' %}
+<!--  -->
+
+{% block links %} {% load static %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}" />
+<link rel="stylesheet" href="{% static 'css/login.css' %}" />
+{% endblock %}
+<!--  -->
+{% block content %}
+<button type="">Login</button>
+{% endblock %}
