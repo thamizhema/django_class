@@ -13,14 +13,14 @@
     <div class="appbar">
       <div class="logo"></div>
       <ul class="nav-items">
-        <li><a href="/">Home</a></li>
-        <li><a href="/login/">login</a></li>
-        <li><a href="/signup/">signup</a></li>
+        <li><a href="{% url 'h' %}">Home</a></li>
+        <li><a href="{% url 'l' %}">login</a></li>
+        <li><a href="{% url 'gl' %}">Glogin</a></li>
+        <li><a href="{% url 's' %}">signup</a></li>
       </ul>
     </div>
     {% block content %}
     <h1>Base file</h1>
     {% endblock %}
-    <p>footer</p>
   </body>
 </html>

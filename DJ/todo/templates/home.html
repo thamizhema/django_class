@@ -1,5 +1,17 @@
 {% extends 'base.html' %}
 <!--  -->
 {% block content %}
-<h1>Home file</h1>
+
+<!--  -->
+
+{% for i in users %}
+<div>
+  <h1>{{ i.username }}</h1>
+  <a href="{% url 'deleteUser' docId=i.username %}">Delete</a>
+  <a href="#">update</a>
+  <hr />
+</div>
+{% endfor %}
+
+<!--  -->
 {% endblock %}

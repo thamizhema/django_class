@@ -2,5 +2,12 @@
 
 <!--  -->
 {% block content %}
-<h1>Singup Page</h1>
+
+<form method="POST">
+  {% csrf_token %}
+  <input type="text" name="username" />
+  <input type="text" name="password" />
+  <input type="submit" />
+</form>
+
 {% endblock %}

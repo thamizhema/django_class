@@ -19,7 +19,7 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('todo.urls')),
-    path('g/', include('gmail.urls'))
+    path('gmail/', include('gmail.urls'))
     # path('gmail/', include('todo.urls'))
     # path('youtube/', include('todo.urls'))
     # path('drive/', include('todo.urls'))
