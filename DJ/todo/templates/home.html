@@ -7,7 +7,8 @@
 {% for i in users %}
 <div>
   <h1>{{ i.username }}</h1>
-  <a href="{% url 'deleteUser' docId=i.username %}">Delete</a>
+  <p>{{ i.docId }}</p>
+  <a href="{% url 'deleteUser' docId=i.docId %}">Delete</a>
   <a href="#">update</a>
   <hr />
 </div>

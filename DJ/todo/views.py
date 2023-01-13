@@ -1,5 +1,6 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse, redirect
 from pymongo import MongoClient
+from bson.objectid import ObjectId
 client = MongoClient("mongodb://localhost:27017")
 db = client['11_01']
 uc = db.User
@@ -26,11 +27,19 @@ def signup(req):
         print(username, '|')
         print(password, "|")
         userData = {"username": username, "password": password}
-        uc.insert_one(userData)
+        result = uc.insert_one(userData)
+        iID = result.inserted_id
+        # filterDoc = ObjectId(iID)
+        data = uc.update_one({"_id": ObjectId(iID)}, {
+                             "$set": {"docId": str(iID)}})
+        print(data)
+        return redirect('h')
     print('==============', '&&&&&&&&&&&&&&&&&')
     return render(req, 'signup.html')
 
+# ObjectId(oid=63c0f9744300c383d01ad102)
+
 
 def deleteUser(req, docId):
-    uc.delete_one({'username': docId})
-    return HttpResponse(f'<h1> {docId} deleted Successfuly</h1>')
+    uc.delete_one({'docId': docId})
+    return redirect('h')
