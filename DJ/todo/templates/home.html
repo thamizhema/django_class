@@ -3,7 +3,12 @@
 {% block content %}
 
 <!--  -->
-
+<h1>Hi User</h1>
+<a href="{% url 'logout' %}">Logout</a>
+<hr />
+<hr />
+<hr />
+<hr />
 {% for i in users %}
 <div>
   <h1>{{ i.username }}</h1>

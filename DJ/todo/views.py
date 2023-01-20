@@ -8,18 +8,34 @@ uc = db.User
 
 
 def home(req):
+    isLogged = dict(req.session).get('docId')
     userData = list(uc.find())
-    print('lllllllllllllllllll')
-    print(userData)
+    print('lllllllll', isLogged, 'llllllllll')
+    if (isLogged == None):
+        return redirect('l')
+
     return render(req, 'home.html', {'users': userData})
 
 
 def login(req):
+    print('&&&&*****&&&&&&', req.method, "&&&&&&*******", sep="\n")
+    if (req.method == "POST"):
+        username = req.POST.get("username")
+        isUser = uc.find_one({'username': username})
+        print('&&&&&&&&&&&&', isUser, '&&&&&&&&&', sep="\n")
+        if (isUser):
+
+            print(isUser)
+            print(isUser.get('docId'))
+            req.session['docId'] = isUser.get('docId')
+            return redirect('h')
+        else:
+            return redirect('s')
+
     return render(req, 'login.html')
 
 
 def signup(req):
-    print(req.method)
     if (req.method == "POST"):
         username = req.POST.get('username')
         password = req.POST.get('password')
@@ -28,12 +44,11 @@ def signup(req):
         print(password, "|")
         userData = {"username": username, "password": password}
         result = uc.insert_one(userData)
-        iID = result.inserted_id
-        # filterDoc = ObjectId(iID)
-        data = uc.update_one({"_id": ObjectId(iID)}, {
-                             "$set": {"docId": str(iID)}})
-        print(data)
-        return redirect('h')
+        myId = result.inserted_id
+        print(myId)
+        uc.update_one({'_id': ObjectId(myId)}, {"$set": {"docId": str(myId)}})
+        return redirect('s')
+
     print('==============', '&&&&&&&&&&&&&&&&&')
     return render(req, 'signup.html')
 
@@ -41,5 +56,10 @@ def signup(req):
 
 
 def deleteUser(req, docId):
-    uc.delete_one({'docId': docId})
+    uc.delete_one({'docId': docId})  # 63c8df21b95d3a5c350da0e1
     return redirect('h')
+
+
+def logout(req):
+    del req.session['docId']
+    return redirect('l')
